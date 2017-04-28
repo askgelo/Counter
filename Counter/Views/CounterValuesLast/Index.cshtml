@@ -1,0 +1,62 @@
+﻿@using Counter.Models
+@model IEnumerable<CounterValuesLastData>
+
+@{
+    ViewBag.Title = "Last values counters";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add new counter", "Create", "Counters")
+</p>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.CounterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.NewValue)
+            </th>
+        </tr>
+        @{
+            int n = 0;
+        }
+        @foreach (var item in Model)
+        {
+            @Html.Hidden($"[{n}].CounterId", item.CounterId)
+            <tr>
+                <td>
+                    @Html.Hidden($"[{n}].CounterName", item.CounterName)
+                    @Html.DisplayFor(modelItem => item.CounterName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Value)
+                </td>
+
+                <td>
+                    @Html.EditorFor(modelItem => item.NewValue, "", $"[{n}].NewValue")
+                    @Html.ValidationMessage($"[{n}].NewValue", new { @class = "text-danger" })
+                </td>
+            </tr>
+            n++;
+        }
+    </table>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+}

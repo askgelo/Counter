@@ -1,0 +1,13 @@
+﻿@using Counter.Models
+@using Counter.Helpers
+@model Graph
+
+
+@{
+    ViewBag.Title = "Graph";
+}
+
+<h2>Index</h2>
+
+@Html.CreateChart(Model)
+
