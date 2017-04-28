@@ -240,3 +240,7 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+Counter/Content
+Counter/fonts
+Counter/Scripts
+Counter/TempImages/
