@@ -11,15 +11,15 @@ namespace Counter.Models
     public class CounterValuesLastData
     {
         public int CounterId { get; set; }
-        [Display(Name = "Counter")]
+        [Display(Name = "Счетчик")]
         public string CounterName { get; set; }
-        [Display(Name = "Last date")]
+        [Display(Name = "Дата последних показаний")]
         [DataType(DataType.Date)]
         public DateTimeOffset? Date { get; set; }
-        [Display(Name = "Last value")]
+        [Display(Name = "Текущее значение")]
         public double? Value { get; set; }
 
-        [Display(Name = "New value")]
+        [Display(Name = "Новое значение")]
         //[CompareTo("Value", 1)]
         public double? NewValue { get; set; }
     }

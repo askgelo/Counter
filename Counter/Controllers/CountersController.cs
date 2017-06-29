@@ -50,7 +50,7 @@ namespace Counter.Controllers
         public async Task<ActionResult> Create([Bind(Include = "Id,Name")] Models.Counter counter)
         {
             if (db.Counters.Where(w => w.Name == counter.Name).Count() > 0)
-                ModelState.AddModelError("Name", "This counter name exist");
+                ModelState.AddModelError("Name", "Счетчик с таким именем уже существует");
 
             if (ModelState.IsValid)
             {
@@ -87,7 +87,7 @@ namespace Counter.Controllers
             var existCounter = db.Counters.FirstOrDefault(v => v.Name == counter.Name);
             if (existCounter != null && existCounter.Id != counter.Id)
             {
-                ModelState.AddModelError("Name", "This name exist!");
+                ModelState.AddModelError("Name", "Счетчик с таким именем уже существует!");
             }
 
             if (ModelState.IsValid)

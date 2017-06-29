@@ -11,7 +11,7 @@ namespace Counter.Models
     public class Counter
     {
         public virtual int Id { get; set; }
-        [MaxLength(256), Index(IsUnique = true)]
+        [MaxLength(256), Index(IsUnique = true), Display(Name="Название")]
         public virtual string Name { get; set; }
         public virtual List<CounterValue> Values { get; set; }
     }

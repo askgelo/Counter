@@ -12,14 +12,16 @@ namespace Counter.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int Id { get; set; }
         [Required]
-        [Display(Name = "Counter")]
+        [Display(Name = "Счетчик")]
         public virtual int CounterId { get; set; }
         public virtual Counter Counter { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
+        [Display(Name = "Дата")]
         public virtual DateTimeOffset Date { get; set; }
         [Required]
+        [Display(Name = "Значение")]
         public virtual double Value { get; set; }
     }
 }

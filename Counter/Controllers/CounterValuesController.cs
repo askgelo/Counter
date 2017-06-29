@@ -40,7 +40,7 @@ namespace Counter.Controllers
         {
             if (counterValue.Date > DateTime.Now.Date)
             {
-                ModelState.AddModelError("Date", "Date must be <= Now");
+                ModelState.AddModelError("Date", "Дата должна быть меньше или равна текущей!");
             }
             else
             {
@@ -48,7 +48,7 @@ namespace Counter.Controllers
                     .Where(v => v.CounterId == counterValue.CounterId && v.Date == counterValue.Date)
                     .FirstOrDefault()?.Value;
                 if (existsValue.HasValue)
-                    ModelState.AddModelError("Date", $"For this date exists value {existsValue.Value}");
+                    ModelState.AddModelError("Date", $"Для этой даты уже заведено такое значение ({existsValue.Value})");
             }
 
             if (ModelState.IsValid)
@@ -60,7 +60,7 @@ namespace Counter.Controllers
                     .FirstOrDefault();
 
                 if (counterValue.Value < maxValue)
-                    ModelState.AddModelError("Value", $"Value ({counterValue.Value}) must be > max previous value ({maxValue})");
+                    ModelState.AddModelError("Value", $"Значение ({counterValue.Value}) должно быть больше предыдущего ({maxValue})");
             }
 
             if (ModelState.IsValid)
@@ -101,7 +101,7 @@ namespace Counter.Controllers
         {
             if (counterValue.Date > DateTime.Now.Date)
             {
-                ModelState.AddModelError("Date", "Date must be <= Now");
+                ModelState.AddModelError("Date", "Дата должна быть не больше текущей!");
             }
             else
             {
@@ -110,7 +110,7 @@ namespace Counter.Controllers
                     v.Date == counterValue.Date)
                     .FirstOrDefault()?.Value;
                 if (existsValue.HasValue)
-                    ModelState.AddModelError("Date", $"For this date exists value {existsValue.Value}");
+                    ModelState.AddModelError("Date", $"Для этой даты уже существует такое значение ({existsValue.Value})");
             }
 
             var concurrentValue = db.CounterValues
@@ -122,7 +122,7 @@ namespace Counter.Controllers
 
             if (concurrentValue != null)
                 ModelState.AddModelError("Value",
-                    string.Format("Exist concurrent value ({0}: {1})", 
+                    string.Format("Есть точно такое же значение: {0}: {1}", 
                     concurrentValue.Date.ToString("dd.MM.yyyy"), concurrentValue.Value));
 
             if (ModelState.IsValid)

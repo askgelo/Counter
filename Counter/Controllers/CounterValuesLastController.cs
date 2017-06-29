@@ -39,12 +39,12 @@ namespace Counter.Controllers
                         if (actualValue == null)
                         {
                             // TODO check summary
-                            ModelState.AddModelError($"Summary {i}", $"Counter ({value.CounterName}) not exists");
+                            ModelState.AddModelError($"Summary {i}", $"Счетчик ({value.CounterName}) не существует");
                         }
                         else if (actualValue.Value > value.NewValue && actualValue.Date < DateTime.Now.Date)
                         {
                             ModelState.AddModelError($"[{i}].NewValue",
-                                $"New value ({value.NewValue}) < old value ({actualValue.Value})");
+                                $"Новое значение ({value.NewValue}) меньше старого ({actualValue.Value})");
                         }
                         else if (actualValue.Date == DateTime.Now.Date)
                         {
@@ -56,7 +56,7 @@ namespace Counter.Controllers
                             if (prevValue?.Value > value.NewValue)
                             {
                                 ModelState.AddModelError($"[{i}].NewValue",
-                                    $"New value ({value.NewValue}) < last value ({prevValue.Value})");
+                                    $"Новое значение меньше ({value.NewValue}) меньше предыдущего ({prevValue.Value})");
                             }
                         }
                     }
